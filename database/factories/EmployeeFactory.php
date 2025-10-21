@@ -18,7 +18,7 @@ class EmployeeFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'phone_no' => '01' . $this->faker->numerify('########'),
             // Pilih department secara rawak daripada table sedia ada
-            'dept_id' => Department::inRandomOrder()->value('department_id') ?? 1,
+            'dept_id' => Department::inRandomOrder()->value('department_id'),
         ];
     }
 }

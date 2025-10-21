@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('employee', function (Blueprint $table) {
-            $table->string('dept_id', 2)->nullable()->after('phone_no');
+            $table->string('dept_id', 5)->nullable()->after('phone_no');
         
             $table->foreign('dept_id')
                   ->references('department_id')
