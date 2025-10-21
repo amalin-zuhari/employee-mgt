@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('department', function (Blueprint $table) {
-            $table->string('department_id', 5)->primary(); //set max length to 2
+            $table->string('department_id', 5)->primary(); //set max length to 5
             $table->string('name');
             $table->timestamps();
         });
