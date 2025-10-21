@@ -16,9 +16,16 @@
 <form action="{{ route('departments.update', $department->department_id) }}" method="POST">
     @csrf
     @method('PUT')
+    <div>
+        <label>Department ID:</label>
+        <input type="text" name="department_id" value="{{ old('department_id', $department->department_id) }}" required>
+    </div>
+    <br>
+    <div>
 
-    <label>Department Name:</label><br>
-    <input type="text" name="name" value="{{ old('name', $department->name) }}" required><br><br>
+        <label>Department Name:</label>
+        <input type="text" name="name" value="{{ old('name', $department->name) }}" required>
+    </div>
 
     <button type="submit">Update</button>
 </form>

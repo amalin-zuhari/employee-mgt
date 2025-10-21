@@ -29,11 +29,13 @@ class DepartmentController extends Controller
     {
         // Validate input data
         $request->validate([
+            'department_id' => 'required|string|max:5|unique:department,department_id',
             'name' => 'required|string|max:100'
         ]);
 
         // Insert data into database
         Department::create([
+            'department_id' => $request->department_id,
             'name' => $request->name
         ]);
 
@@ -55,12 +57,16 @@ class DepartmentController extends Controller
     {
         // Validate input
         $request->validate([
+            'department_id' => 'required|string|max:5|unique:department,department_id,' . $id . ',department_id',
             'name' => 'required|string|max:100'
         ]);
 
         // Find and update record
         $department = Department::findOrFail($id);
-        $department->update(['name' => $request->name]);
+        $department->update([
+            'department_id' => $request->department_id,
+            'name' => $request->name
+        ]);
 
         return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
     }
