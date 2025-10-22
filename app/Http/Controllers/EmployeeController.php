@@ -11,10 +11,16 @@ class EmployeeController extends Controller
     /**
      * Display all employees
      */
+
+    public function indextest()
+    {
+        return view('welcome');
+    }
+
     public function index()
     {
         // Load all employees with their related department info
-        $employees = Employee::with('department')->get();
+        // $employees = Employee::with('department')->get();
 
         return view('employees.index', compact('employees'));
     }
@@ -42,6 +48,17 @@ class EmployeeController extends Controller
             'email' => 'required|email',
             'phone_no' => 'required|string|max:15',
             'dept_id' => 'required|exists:department,department_id',
+        ], [
+            'name.required' => 'Employee name is required.',
+            'name.max' => 'Employee name cannot be more than 100 characters long.',
+            'ic_no.required' => 'IC number is required.',
+            'ic_no.max' => 'IC number cannot be more than 20 characters long.',
+            'email.required' => 'Email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'phone_no.required' => 'Phone number is required.',
+            'phone_no.max' => 'Phone number cannot be more than 15 characters long.',
+            'dept_id.required' => 'Department selection is required.',
+            'dept_id.exists' => 'Selected department does not exist.'
         ]);
 
         // Insert new record
@@ -82,6 +99,17 @@ class EmployeeController extends Controller
             'email' => 'required|email',
             'phone_no' => 'required|string|max:15',
             'dept_id' => 'required|exists:department,department_id',
+        ], [
+            'name.required' => 'Employee name is required.',
+            'name.max' => 'Employee name cannot be more than 100 characters long.',
+            'ic_no.required' => 'IC number is required.',
+            'ic_no.max' => 'IC number cannot be more than 20 characters long.',
+            'email.required' => 'Email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'phone_no.required' => 'Phone number is required.',
+            'phone_no.max' => 'Phone number cannot be more than 15 characters long.',
+            'dept_id.required' => 'Department selection is required.',
+            'dept_id.exists' => 'Selected department does not exist.'
         ]);
 
         $employee = Employee::findOrFail($id);
