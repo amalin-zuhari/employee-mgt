@@ -5,11 +5,14 @@
 
 {{-- Show validation errors if any --}}
 @if ($errors->any())
-    <ul style="color:red;">
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+    <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
+        <strong>Please fix the following errors:</strong>
+        <ul style="margin: 5px 0 0 20px;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 
 {{-- Edit form --}}
@@ -19,12 +22,17 @@
     <div>
         <label>Department ID:</label>
         <input type="text" name="department_id" value="{{ old('department_id', $department->department_id) }}" required>
+        @error('department_id')
+            <div style="color: red; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+        @enderror
     </div>
     <br>
     <div>
-
         <label>Department Name:</label>
         <input type="text" name="name" value="{{ old('name', $department->name) }}" required>
+        @error('name')
+            <div style="color: red; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+        @enderror
     </div>
 
     <button type="submit">Update</button>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 
+use Illuminate\Support\Facades\Log;
+
 class DepartmentController extends Controller
 {
     // Display list of departments
@@ -31,7 +33,15 @@ class DepartmentController extends Controller
         $request->validate([
             'department_id' => 'required|string|max:5|unique:department,department_id',
             'name' => 'required|string|max:100'
+        ], [
+            'department_id.max' => 'Department ID cannot be more than 5 characters long.',
+            'department_id.required' => 'Department ID is required.',
+            'department_id.unique' => 'This Department ID already exists.',
+            'name.required' => 'Department name is required.',
+            'name.max' => 'Department name cannot be more than 100 characters long.'
         ]);
+
+        Log::info('Department created: ' . $request->department_id);
 
         // Insert data into database
         Department::create([
@@ -59,6 +69,12 @@ class DepartmentController extends Controller
         $request->validate([
             'department_id' => 'required|string|max:5|unique:department,department_id,' . $id . ',department_id',
             'name' => 'required|string|max:100'
+        ], [
+            'department_id.max' => 'Department ID cannot be more than 5 characters long.',
+            'department_id.required' => 'Department ID is required.',
+            'department_id.unique' => 'This Department ID already exists.',
+            'name.required' => 'Department name is required.',
+            'name.max' => 'Department name cannot be more than 100 characters long.'
         ]);
 
         // Find and update record
