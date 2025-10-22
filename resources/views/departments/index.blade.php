@@ -9,8 +9,8 @@
     <p>{{ session('success') }}</p>
 @endif
 
-<table border="1" cellpadding="5">
-    <tr>
+<table class="table table-striped">
+    <tr class="table-primary">
         <th>ID</th>
         <th>Name</th>
         <th>Action</th>
@@ -20,11 +20,11 @@
         <td>{{ $dept->department_id }}</td>
         <td>{{ $dept->name }}</td>
         <td>
-            <a href="{{ route('departments.edit', $dept->department_id) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ route('departments.edit', $dept->department_id) }}"><i class="bi bi-airplane-engines-fill"></i> Kemaskini</a>
             <form action="{{ route('departments.destroy', $dept->department_id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('Delete this department?')">Delete</button>
+                <button type="submit" onclick="return confirm('Delete this department?')"  class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title=" Hapus"><i class="bi bi-x-circle-fill"></i></button>
             </form>
         </td>
     </tr>
