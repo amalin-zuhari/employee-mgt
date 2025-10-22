@@ -3,7 +3,9 @@
 @section('content')
 <h2>Department List</h2>
 
-<a href="{{ route('departments.create') }}">Add Department</a>
+<a class="btn btn-success" href="{{ route('departments.create') }}"><i class="bi bi-plus-square-fill"></i> Add Department</a>
+<br>
+<br>
 
 @if(session('success'))
     <p>{{ session('success') }}</p>

@@ -18,17 +18,21 @@
 <form action="{{ route('departments.store') }}" method="POST">
     @csrf
 
-    <div>
+    <div class="form-group">
         <label>Department ID:</label>
-        <input type="text" name="department_id" value="{{ old('department_id') }}" required>
+        <input type="text" name="department_id" 
+        class="form-control" 
+        value="{{ old('department_id') }}" required>
         @error('department_id')
             <div style="color: rgb(235, 155, 6); font-size: 12px; margin-top: 5px;">{{ $message }}</div>
         @enderror
     </div>
     <br>
-    <div>
+    <div class="form-group">
         <label>Department Name:</label>
-        <input type="text" name="name" value="{{ old('name') }}" required>
+        <input type="text" name="name" 
+        class="form-control" 
+        value="{{ old('name') }}" required>
         @error('name')
             <div style="color: red; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
         @enderror

@@ -8,9 +8,9 @@
     <p style="color: green;">{{ session('success') }}</p>
 @endif
 
-<a href="{{ route('employees.create') }}">+ Add Employee</a>
+<a class="btn btn-success" href="{{ route('employees.create') }}">+ Add Employee</a>
 
-<table border="1" cellpadding="5" cellspacing="0" style="margin-top:10px;">
+<table class="table table-striped table-dark">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -32,14 +32,14 @@
         <td>{{ $emp->department ? $emp->department->name : '-' }}</td>
 
         <td>
-            <a href="{{ route('employees.show', $emp->id) }}">View</a> |
-            <a href="{{ route('employees.edit', $emp->id) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ route('employees.show', $emp->id) }}">View</a>
+            <a class="btn btn-warning" href="{{ route('employees.edit', $emp->id) }}">Edit</a>
 
             {{-- Delete form --}}
             <form action="{{ route('employees.destroy', $emp->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('Are you sure to delete this employee?')">Delete</button>
+                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure to delete this employee?')">Delete</button>
             </form>
         </td>
     </tr>
